@@ -1,0 +1,62 @@
+{
+  "orders": [
+    {
+      "order_id": 1001,
+      "customer": {
+        "name": "John",
+        "address": {
+          "city": "Chennai",
+          "country": "India"
+        }
+      },
+      "items": [
+        {
+          "product": "Laptop",
+          "qty": 2,
+          "suppliers": [
+            {
+              "name": "ABC",
+              "country": "India"
+            },
+            {
+              "name": "XYZ",
+              "country": "Singapore"
+            }
+          ]
+        },
+        {
+          "product": "Mouse",
+          "qty": 3,
+          "suppliers": [
+            {
+              "name": "ABC",
+              "country": "India"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order_id": 1002,
+      "customer": {
+        "name": "Raj",
+        "address": {
+          "city": "Bangalore",
+          "country": "India"
+        }
+      },
+      "items": [
+        {
+          "product": "Keyboard",
+          "qty": 1,
+          "suppliers": [
+            {
+              "name": "PQR",
+              "country": "India"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

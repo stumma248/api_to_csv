@@ -1,0 +1,47 @@
+api:
+  name: secure_order_api
+  method: GET
+  url: "https://api.example.com/orders"
+  headers:
+    Accept: "application/json"
+  timeout_seconds: 120
+  retries: 4
+  retry_backoff_seconds: 2
+  verify_tls: true
+
+authentication:
+  type: oauth2_client_credentials
+  token_url: "https://auth.example.com/oauth/token"
+  client_id: "${API_CLIENT_ID}"
+  client_secret: "${API_CLIENT_SECRET}"
+  scope: "orders.read"
+  timeout_seconds: 60
+  verify_tls: true
+
+pagination:
+  mode: page_number
+  page_param: page
+  start_page: 1
+  page_size: 100
+  max_pages: 10000
+  data_path: orders
+
+output:
+  file: "./output/orders.csv"
+  array_mode: cartesian
+  column_separator: "_"
+
+schema:
+  mode: allow_additive
+  file: "./audit/orders_schema.json"
+
+raw_archive:
+  enabled: false
+  directory: "./raw/orders"
+
+audit:
+  file: "./audit/api_to_csv_audit.jsonl"
+
+logging:
+  level: INFO
+  file: "./logs/api_to_csv.log"

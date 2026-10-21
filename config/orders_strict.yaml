@@ -1,0 +1,38 @@
+api:
+  name: order_api
+  method: GET
+  url: "https://api.example.com/orders"
+  headers:
+    Accept: "application/json"
+  timeout_seconds: 120
+  retries: 3
+  retry_backoff_seconds: 2
+
+authentication:
+  type: bearer
+  token: "${API_TOKEN}"
+
+pagination:
+  mode: none
+
+output:
+  file: "./output/orders.csv"
+  data_path: orders
+  array_mode: cartesian
+  column_separator: "_"
+
+schema:
+  mode: strict
+  columns:
+    - order_id
+    - customer_name
+    - customer_address_city
+    - items_product
+    - items_qty
+
+audit:
+  file: "./audit/api_to_csv_audit.jsonl"
+
+logging:
+  level: INFO
+  file: "./logs/api_to_csv.log"

@@ -1,0 +1,14 @@
+CREATE TABLE API_INGEST_AUDIT (
+    RUN_ID              VARCHAR(100),
+    API_NAME            VARCHAR(200),
+    METHOD              VARCHAR(20),
+    START_TIME_UTC      TIMESTAMP,
+    END_TIME_UTC        TIMESTAMP,
+    STATUS              VARCHAR(30),
+    PAGES               INTEGER,
+    ROWS_LOADED         INTEGER,
+    COLUMN_COUNT        INTEGER,
+    OUTPUT_FILE         VARCHAR(1000),
+    ERROR_TYPE          VARCHAR(200),
+    ERROR_MESSAGE       VARCHAR(4000)
+);

@@ -1,0 +1,38 @@
+api:
+  name: local_deep_order_api
+  method: GET
+  url: "http://localhost:8000/orders"
+  headers:
+    Accept: "application/json"
+  params:
+    page_size: 20
+  timeout_seconds: 30
+  retries: 2
+  retry_backoff_seconds: 1
+  verify_tls: true
+
+authentication:
+  type: none
+
+pagination:
+  mode: none
+
+output:
+  file: "./output/orders_deep.csv"
+  data_path: orders
+  array_mode: cartesian
+  column_separator: "_"
+
+schema:
+  mode: discover
+  file: "./audit/orders_deep_schema.json"
+
+raw_archive:
+  enabled: false
+
+audit:
+  file: "./audit/api_to_csv_audit.jsonl"
+
+logging:
+  level: INFO
+  file: "./logs/orders_deep.log"

@@ -1,0 +1,41 @@
+api:
+  name: local_order_search_api
+  method: POST
+  url: "http://localhost:8000/orders/search"
+  headers:
+    Accept: "application/json"
+    Content-Type: "application/json"
+  body:
+    status: "ACTIVE"
+    min_qty: 2
+  timeout_seconds: 30
+  retries: 2
+  retry_backoff_seconds: 1
+  verify_tls: true
+
+authentication:
+  type: none
+
+pagination:
+  mode: none
+
+output:
+  file: "./output/orders_post.csv"
+  data_path: result.orders
+  array_mode: cartesian
+  column_separator: "_"
+
+schema:
+  mode: discover
+  file: "./audit/orders_post_schema.json"
+
+raw_archive:
+  enabled: true
+  directory: "./raw/orders_post"
+
+audit:
+  file: "./audit/api_to_csv_audit.jsonl"
+
+logging:
+  level: INFO
+  file: "./logs/orders_post.log"

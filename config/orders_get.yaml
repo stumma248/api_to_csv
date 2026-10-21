@@ -1,0 +1,41 @@
+api:
+  name: local_order_api
+  method: GET
+  url: "http://localhost:8000/orders"
+  headers:
+    Accept: "application/json"
+  params:
+    page_size: 5
+  timeout_seconds: 30
+  retries: 2
+  retry_backoff_seconds: 1
+  verify_tls: true
+
+authentication:
+  type: none
+
+pagination:
+  mode: next_url
+  data_path: orders
+  next_url_path: meta.next_url
+  max_pages: 100
+
+output:
+  file: "./output/orders_get.csv"
+  array_mode: cartesian
+  column_separator: "_"
+
+schema:
+  mode: discover
+  file: "./audit/orders_get_schema.json"
+
+raw_archive:
+  enabled: true
+  directory: "./raw/orders_get"
+
+audit:
+  file: "./audit/api_to_csv_audit.jsonl"
+
+logging:
+  level: INFO
+  file: "./logs/orders_get.log"
